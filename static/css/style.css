@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: #fff;
+  color: #333;
+  padding-bottom: 2rem;
+}
+
+header {
+  background-color: #fff;
+  padding: 1.2rem 2rem;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-nav h1 {
+  font-size: 1.5rem;
+  color: #2a2a2a;
+}
+
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.top-nav p {
+  margin-left: 1rem;
+  color: #555;
+  font-size: 1rem;
+}
+
+.top-nav nav {
+  margin-left: auto;
+  text-align: right;
+}
+
+.top-nav nav a {
+  margin-left: 1rem;
+  color: #004aad;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.hero {
+  margin-top: 1rem;
+}
+
+.hero-image {
+  position: relative;
+  text-align: center;
+}
+
+.hero-image img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+}
+
+.hero-text {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -25%);
+  color: white;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  max-width: 80%;
+}
+
+.hero-text h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-text p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem;
+  justify-content: space-between;
+}
+
+.services, .why-choose {
+  flex: 1 1 300px;
+}
+
+h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+  color: #222;
+}
+
+ul {
+  list-style: disc inside;
+  line-height: 1.8;
+}
