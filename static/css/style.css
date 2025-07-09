@@ -352,3 +352,6 @@ footer {
     display: block;
   }
 }
+.nav-links {
+  transition: all 0.3s ease-in-out;
+}
