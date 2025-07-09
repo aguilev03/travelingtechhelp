@@ -1,55 +1,114 @@
+/* ===== Reset and Base Styles ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+/* Consistent layout wrapper */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Two-column grid only when needed */
+.columns-2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.columns-2 > section {
+  flex: 1 1 48%;
+}
+
+/* Centered blocks for single-column content */
+.centered-section {
+  text-align: center;
+  margin: 3rem auto;
+}
+
+.centered-section img {
+  border-radius: 0.5rem;
+  max-width: 150px;
+  margin-bottom: 1rem;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 2rem 0;
+  border-top: 1px solid #ccc;
+  font-size: 0.9rem;
+  color: #555;
+}
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #fff;
   color: #333;
-  padding-bottom: 2rem;
+  line-height: 1.6;
 }
 
-header {
-  background-color: #fff;
-  padding: 1.2rem 2rem;
-  border-bottom: 1px solid #ccc;
+/* ===== Header Section ===== */
+/* Header layout fix */
+.brand-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.top-nav h1 {
-  font-size: 1.5rem;
-  color: #2a2a2a;
-}
-
-.top-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 1rem;
   flex-wrap: wrap;
 }
-.top-nav p {
-  margin-left: 1rem;
-  color: #555;
-  font-size: 1rem;
+
+.site-header {
+  padding: 1.2rem 2rem;
+  border-bottom: 1px solid #ccc;
+  background-color: #fff;
 }
 
-.top-nav nav {
-  margin-left: auto;
+/* Logo + Brand */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand img {
+  height: 75px;
+  width: auto;
+}
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-text h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #004aad;
+}
+
+.brand-text p {
+  font-size: 0.85rem;
+  font-style: bold;
+  color: #004aad;
+  margin: 0;
+}
+
+/* Nav Links */
+.nav-links {
   text-align: right;
 }
 
-.top-nav nav a {
-  margin-left: 1rem;
+.nav-links a {
+  margin-left: 1.5rem;
   color: #004aad;
   text-decoration: none;
   font-weight: bold;
 }
 
+/* ===== Hero Section ===== */
 .hero {
   margin-top: 1rem;
 }
@@ -75,6 +134,7 @@ header {
   padding: 1.5rem;
   border-radius: 0.5rem;
   max-width: 80%;
+  text-align: center;
 }
 
 .hero-text h2 {
@@ -94,7 +154,10 @@ header {
   padding: 0.6rem 1.2rem;
   text-decoration: none;
   border-radius: 5px;
+  font-weight: bold;
 }
+
+/* ===== Main Content ===== */
 
 .content {
   display: flex;
@@ -104,7 +167,8 @@ header {
   justify-content: space-between;
 }
 
-.services, .why-choose {
+.services,
+.why-choose {
   flex: 1 1 300px;
 }
 
@@ -117,4 +181,85 @@ h3 {
 ul {
   list-style: disc inside;
   line-height: 1.8;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding-top: 2rem;
+}
+
+.services,
+.why-choose {
+  flex: 1 1 48%;
+}
+
+.services h3,
+.why-choose h3 {
+  margin-bottom: 0.5rem;
+}
+
+/* Let items align better */
+.services ul,
+.why-choose ul {
+  padding-left: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* Hero full-width fix */
+.hero-image img {
+  width: 100vw;
+  object-fit: cover;
+}
+
+/* Optional: Center hero content more evenly */
+.hero-text {
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .services,
+  .why-choose {
+    flex: 1 1 100%;
+  }
+
+  .brand-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    text-align: left;
+    margin-top: 0.5rem;
+  }
+}
+
+/* ===== Responsive Styles ===== */
+@media (max-width: 768px) {
+  .brand-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .nav-links {
+    text-align: left;
+    margin-top: 0.5rem;
+  }
+
+  .hero-text {
+    font-size: 90%;
+    padding: 1rem;
+  }
+
+  .content {
+    flex-direction: column;
+  }
 }
