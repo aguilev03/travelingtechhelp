@@ -79,6 +79,19 @@ body {
   text-decoration: none;
 }
 
+/* Hamburger styles (hidden on desktop) */
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+/* Hide checkbox */
+.menu-toggle {
+  display: none;
+}
+
 /* === Hero Section === */
 .hero-image {
   position: relative;
@@ -316,4 +329,26 @@ footer {
 .hero-text {
   max-width: 90%;
   padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .brand-row {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .menu-toggle:checked + .hamburger + .nav-links {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
 }
