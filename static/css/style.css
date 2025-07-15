@@ -422,3 +422,31 @@ footer {
     padding: 1.5rem;
   }
 }
+.card-flex {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}
+
+.card-flex .about-photo {
+  max-width: 160px;
+  flex-shrink: 0;
+  border-radius: 8px;
+}
+
+.card-flex .card-text {
+  flex: 1;
+}
+
+@media (max-width: 600px) {
+  .card-flex {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .card-flex .card-text {
+    text-align: left;
+  }
+}
