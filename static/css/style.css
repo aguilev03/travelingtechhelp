@@ -407,3 +407,18 @@ footer {
   border-radius: 8px;
   flex-shrink: 0;
 }
+@media (max-width: 600px) {
+  .tech-profile {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .tech-bio {
+    text-align: left;
+  }
+
+  .tech-card {
+    padding: 1.5rem;
+  }
+}
