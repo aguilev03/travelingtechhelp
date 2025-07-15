@@ -485,3 +485,19 @@ footer {
     text-align: left;
   }
 }
+/* TEST */
+.card-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  align-items: stretch; /* 🔥 This makes all cards same height */
+}
+
+.card-row .card {
+  flex: 1 1 45%;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* pushes content to top and bottom */
+}
