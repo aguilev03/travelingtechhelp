@@ -508,3 +508,18 @@ footer {
   gap: 2rem;
   align-items: stretch;
 }
+.card-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  align-items: start; /* ⬅️ This is the key! Align top, not center */
+}
+
+.card h3 {
+  margin-bottom: 0.5rem; /* tighter than default */
+}
+
+.card ul,
+.card p {
+  margin-top: 0.5rem; /* smaller top spacing */
+}
