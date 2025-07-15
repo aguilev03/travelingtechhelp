@@ -450,3 +450,38 @@ footer {
     text-align: left;
   }
 }
+
+.card-flex {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 2rem;
+  flex-wrap: nowrap;
+}
+
+.about-photo-wrapper {
+  flex-shrink: 0;
+}
+
+.about-photo {
+  max-width: 160px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.about-text {
+  flex: 1;
+}
+
+/* Only stack on small phones */
+@media (max-width: 600px) {
+  .card-flex {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-text {
+    text-align: left;
+  }
+}
