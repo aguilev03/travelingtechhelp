@@ -424,15 +424,23 @@ footer {
 }
 .card-flex {
   display: flex;
+  flex-direction: row;
   gap: 2rem;
   align-items: flex-start;
-  flex-wrap: nowrap;
+  flex-wrap: nowrap; /* important to prevent wrapping */
 }
 
-.card-flex .about-photo {
-  max-width: 160px;
+.about-photo-wrapper {
   flex-shrink: 0;
+  max-width: 200px;
+}
+
+.about-photo {
+  width: 100%;
   border-radius: 8px;
+}
+.about-text {
+  flex: 1;
 }
 
 .card-flex .card-text {
@@ -522,4 +530,23 @@ footer {
 .card ul,
 .card p {
   margin-top: 0.5rem; /* smaller top spacing */
+}
+.card-flex {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: flex-start;
+  flex-wrap: nowrap; /* important to prevent wrapping */
+}
+.about-photo-wrapper {
+  flex-shrink: 0;
+  max-width: 200px;
+}
+
+.about-photo {
+  width: 100%;
+  border-radius: 8px;
+}
+.about-text {
+  flex: 1;
 }
