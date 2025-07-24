@@ -7,24 +7,25 @@
     <link rel="stylesheet" href="../static/css/style.css" />
     <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon" />
 
-    <!-- jQuery (required by Zammad form) -->
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <style>
-      .human-check {
+      .checkbox-container {
+        display: flex;
+        align-items: center;
         margin-top: 1em;
-        padding: 1em;
-        border: 1px solid #ccc;
-        background: #f9f9f9;
-        border-radius: 8px;
       }
-      .human-check label {
-        font-weight: bold;
-      }
-      .human-check input[type="checkbox"] {
+
+      .checkbox-container input[type="checkbox"] {
         margin-right: 0.5em;
+        transform: scale(1.2);
       }
-      #zammad-feedback-form {
-        margin-top: 1em;
+
+      .zammad-form-error {
+        color: red;
+        font-size: 0.9rem;
+        margin-top: 0.5em;
       }
     </style>
   </head>
@@ -86,16 +87,8 @@
           >
         </p>
 
-        <!-- Human Verification -->
-        <div class="human-check">
-          <label>
-            <input type="checkbox" id="verify-human" />
-            I am not a robot
-          </label>
-        </div>
-
-        <!-- Zammad Form Placeholder -->
-        <div id="zammad-feedback-form"></div>
+        <!-- Zammad Form -->
+        <div id="zammad-feedback-form">Form will be placed here</div>
       </section>
     </main>
 
@@ -104,26 +97,59 @@
       <p>
         📞 (210)624-9313 | ✉️
         <a href="mailto:Support@TravelingTechPro.com"
-          >Support@TravelingTechPro.com</a>
+          >Support@TravelingTechPro.com</a
+        >
       </p>
       <p>© 2025 Traveling Tech Pro | Local. Mobile. Reliable.</p>
     </footer>
 
     <!-- Zammad Form Script -->
     <script id="zammad_form_script" src="https://crm.eaguil.com/assets/form/form.js"></script>
+
     <script>
-      $(document).ready(function () {
-        $('#verify-human').on('change', function () {
-          if (this.checked) {
-            $('#zammad-feedback-form').ZammadForm({
-              messageTitle: 'Contact Us',
-              messageSubmit: 'Submit',
-              messageThankYou: "Thank you for your inquiry (#%s)! We'll contact you as soon as possible.",
-              showTitle: true
+      $(function () {
+        $('#zammad-feedback-form').ZammadForm({
+          messageTitle: 'Contact Us',
+          messageSubmit: 'Submit',
+          messageThankYou: "Thank you for your inquiry (#%s)! We'll contact you as soon as possible.",
+          showTitle: true
+        });
+
+        // Wait until the form is rendered
+        const observer = new MutationObserver(() => {
+          const $form = $('#zammad-feedback-form form');
+
+          if ($form.length && !$form.find('#not-a-robot').length) {
+            // Add checkbox next to the submit button
+            const $submitBtn = $form.find('button[type="submit"]');
+
+            const checkboxHTML = `
+              <div class="checkbox-container">
+                <input type="checkbox" id="not-a-robot" />
+                <label for="not-a-robot">I am not a robot</label>
+              </div>
+              <div class="zammad-form-error" id="human-error" style="display:none;">Please confirm you're not a robot.</div>
+            `;
+
+            $submitBtn.before(checkboxHTML);
+
+            // Enforce checkbox on submit
+            $form.on('submit', function (e) {
+              if (!$('#not-a-robot').is(':checked')) {
+                e.preventDefault();
+                $('#human-error').show();
+              } else {
+                $('#human-error').hide();
+              }
             });
-          } else {
-            $('#zammad-feedback-form').empty(); // Remove form if unchecked again
+
+            observer.disconnect(); // Stop watching once added
           }
+        });
+
+        observer.observe(document.getElementById('zammad-feedback-form'), {
+          childList: true,
+          subtree: true
         });
       });
     </script>
