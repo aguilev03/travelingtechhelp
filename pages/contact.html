@@ -7,8 +7,26 @@
     <link rel="stylesheet" href="../static/css/style.css" />
     <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon" />
 
-    <!-- jQuery (Required for Zammad Form) -->
+    <!-- jQuery (required by Zammad form) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      .human-check {
+        margin-top: 1em;
+        padding: 1em;
+        border: 1px solid #ccc;
+        background: #f9f9f9;
+        border-radius: 8px;
+      }
+      .human-check label {
+        font-weight: bold;
+      }
+      .human-check input[type="checkbox"] {
+        margin-right: 0.5em;
+      }
+      #zammad-feedback-form {
+        margin-top: 1em;
+      }
+    </style>
   </head>
   <body>
     <!-- Header -->
@@ -51,7 +69,8 @@
           <li>
             <strong>📧 Email:</strong>
             <a href="mailto:support@travelingtechpro.com"
-              >Support@travelingtechpro.com</a>
+              >Support@travelingtechpro.com</a
+            >
           </li>
         </ul>
 
@@ -67,8 +86,16 @@
           >
         </p>
 
-        <!-- Zammad Feedback Button -->
-        <button id="zammad-feedback-form" class="zammad-button">📩 Quick Message</button>
+        <!-- Human Verification -->
+        <div class="human-check">
+          <label>
+            <input type="checkbox" id="verify-human" />
+            I am not a robot
+          </label>
+        </div>
+
+        <!-- Zammad Form Placeholder -->
+        <div id="zammad-feedback-form"></div>
       </section>
     </main>
 
@@ -82,15 +109,21 @@
       <p>© 2025 Traveling Tech Pro | Local. Mobile. Reliable.</p>
     </footer>
 
-    <!-- Zammad Form Scripts -->
+    <!-- Zammad Form Script -->
     <script id="zammad_form_script" src="https://crm.eaguil.com/assets/form/form.js"></script>
     <script>
-      $(function () {
-        $('#zammad-feedback-form').ZammadForm({
-          messageTitle: 'Contact Us',
-          messageSubmit: 'Submit',
-          messageThankYou: 'Thank you for your inquiry (#%s)! We\'ll contact you as soon as possible.',
-          modal: true
+      $(document).ready(function () {
+        $('#verify-human').on('change', function () {
+          if (this.checked) {
+            $('#zammad-feedback-form').ZammadForm({
+              messageTitle: 'Contact Us',
+              messageSubmit: 'Submit',
+              messageThankYou: "Thank you for your inquiry (#%s)! We'll contact you as soon as possible.",
+              showTitle: true
+            });
+          } else {
+            $('#zammad-feedback-form').empty(); // Remove form if unchecked again
+          }
         });
       });
     </script>
