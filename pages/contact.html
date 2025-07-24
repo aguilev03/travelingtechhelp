@@ -6,6 +6,9 @@
     <title>Contact us | Traveling Tech Help</title>
     <link rel="stylesheet" href="../static/css/style.css" />
     <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon" />
+
+    <!-- jQuery (Required for Zammad Form) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <!-- Header -->
@@ -31,6 +34,7 @@
         </nav>
       </div>
     </header>
+
     <main class="container">
       <section class="card contact-card">
         <h2>Get in Touch</h2>
@@ -47,8 +51,7 @@
           <li>
             <strong>📧 Email:</strong>
             <a href="mailto:support@travelingtechpro.com"
-              >Support@travelingtechpro.com</a
-            >
+              >Support@travelingtechpro.com</a>
           </li>
         </ul>
 
@@ -63,6 +66,9 @@
             areas.</em
           >
         </p>
+
+        <!-- Zammad Feedback Button -->
+        <button id="zammad-feedback-form" class="zammad-button">📩 Quick Message</button>
       </section>
     </main>
 
@@ -71,10 +77,22 @@
       <p>
         📞 (210)624-9313 | ✉️
         <a href="mailto:Support@TravelingTechPro.com"
-          >Support@TravelingTechPro.com</a
-        >
+          >Support@TravelingTechPro.com</a>
       </p>
       <p>© 2025 Traveling Tech Pro | Local. Mobile. Reliable.</p>
     </footer>
+
+    <!-- Zammad Form Scripts -->
+    <script id="zammad_form_script" src="https://crm.eaguil.com/assets/form/form.js"></script>
+    <script>
+      $(function () {
+        $('#zammad-feedback-form').ZammadForm({
+          messageTitle: 'Contact Us',
+          messageSubmit: 'Submit',
+          messageThankYou: 'Thank you for your inquiry (#%s)! We\'ll contact you as soon as possible.',
+          modal: true
+        });
+      });
+    </script>
   </body>
 </html>
