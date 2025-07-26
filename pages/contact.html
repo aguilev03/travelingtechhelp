@@ -20,28 +20,6 @@
     />
     <meta name="apple-mobile-web-app-title" content="TravelingTechPro" />
     <link rel="manifest" href="..static/images/site.webmanifest" />
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <style>
-      .checkbox-container {
-        display: flex;
-        align-items: center;
-        margin-top: 1em;
-      }
-
-      .checkbox-container input[type="checkbox"] {
-        margin-right: 0.5em;
-        transform: scale(1.2);
-      }
-
-      .zammad-form-error {
-        color: red;
-        font-size: 0.9rem;
-        margin-top: 0.5em;
-      }
-    </style>
   </head>
   <body>
     <!-- Header -->
@@ -100,9 +78,28 @@
             areas.</em
           >
         </p>
+      </section>
+      <section class="card">
+        <form id="contact-form" class="card" method="POST">
+          <h2>Contact Us</h2>
 
-        <!-- Zammad Form -->
-        <div id="zammad-feedback-form">Form will be placed here</div>
+          <label for="firstName">First Name *</label>
+          <input type="text" id="firstName" name="firstName" required />
+
+          <label for="lastName">Last Name *</label>
+          <input type="text" id="lastName" name="lastName" required />
+
+          <label for="phone">Phone Number *</label>
+          <input type="tel" id="phone" name="phone" required />
+
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="issue">Describe Your Issue *</label>
+          <textarea id="issue" name="issue" rows="5" required></textarea>
+
+          <button type="submit" class="btn">Submit</button>
+        </form>
       </section>
     </main>
 
@@ -116,60 +113,5 @@
       </p>
       <p>© 2025 Traveling Tech Pro | Local. Mobile. Reliable.</p>
     </footer>
-
-    <!-- Zammad Form Script -->
-    <script
-      id="zammad_form_script"
-      src="https://crm.eaguil.com/assets/form/form.js"
-    ></script>
-
-    <script>
-      $(function () {
-        $("#zammad-feedback-form").ZammadForm({
-          messageTitle: "Contact Us",
-          messageSubmit: "Submit",
-          messageThankYou:
-            "Thank you for your inquiry (#%s)! We'll contact you as soon as possible.",
-          showTitle: true,
-        });
-
-        // Wait until the form is rendered
-        const observer = new MutationObserver(() => {
-          const $form = $("#zammad-feedback-form form");
-
-          if ($form.length && !$form.find("#not-a-robot").length) {
-            // Add checkbox next to the submit button
-            const $submitBtn = $form.find('button[type="submit"]');
-
-            const checkboxHTML = `
-              <div class="checkbox-container">
-                <input type="checkbox" id="not-a-robot" />
-                <label for="not-a-robot">I am not a robot</label>
-              </div>
-              <div class="zammad-form-error" id="human-error" style="display:none;">Please confirm you're not a robot.</div>
-            `;
-
-            $submitBtn.before(checkboxHTML);
-
-            // Enforce checkbox on submit
-            $form.on("submit", function (e) {
-              if (!$("#not-a-robot").is(":checked")) {
-                e.preventDefault();
-                $("#human-error").show();
-              } else {
-                $("#human-error").hide();
-              }
-            });
-
-            observer.disconnect(); // Stop watching once added
-          }
-        });
-
-        observer.observe(document.getElementById("zammad-feedback-form"), {
-          childList: true,
-          subtree: true,
-        });
-      });
-    </script>
   </body>
 </html>

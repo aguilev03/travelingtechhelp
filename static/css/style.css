@@ -569,3 +569,44 @@ footer {
 .zammad-button:hover {
   background-color: #d62828;
 }
+#contact-form label {
+  font-weight: bold;
+  margin-top: 1rem;
+  display: block;
+  color: #03335c;
+}
+
+#contact-form input,
+#contact-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: #f9f9f9;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  background-color: #fff;
+}
+
+#contact-form .btn {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #004aad;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#contact-form .btn:hover {
+  background-color: #03335c;
+}
