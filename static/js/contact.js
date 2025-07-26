@@ -1,34 +1,27 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contact-form");
-  const status = document.createElement("p");
-  status.id = "form-status";
-  status.style.marginTop = "1rem";
-  form.appendChild(status);
 
-  form.addEventListener("submit", async function (e) {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    status.textContent = "Sending...";
 
-    // Collect field values
-    const firstName = form.firstName.value.trim();
-    const lastName = form.lastName.value.trim();
-    const email = form.email.value.trim();
-    const phone = form.phone.value.trim();
-    const issue = form.issue.value.trim();
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const issue = document.getElementById("issue").value.trim();
 
-    // Basic validation
-    if (!firstName || !lastName || !email || !phone || !issue) {
-      status.textContent = "Please fill out all fields.";
-      status.style.color = "red";
+    // ✅ Strip non-digits for validation
+    const phoneDigits = phone.replace(/\D/g, "");
+    if (phoneDigits.length !== 10) {
+      alert("Please enter a valid 10-digit phone number.");
       return;
     }
 
-    // Prepare payload
     const payload = {
       firstName,
       lastName,
       email,
-      phone,
+      phone, // keep original (formatted) for readability in ticket
       issue,
     };
 
@@ -42,19 +35,38 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       );
 
-      if (response.ok) {
-        status.textContent = "Thank you! Your message has been sent.";
-        status.style.color = "green";
-        form.reset();
-      } else {
-        const error = await response.text();
-        status.textContent = "Something went wrong: " + error;
-        status.style.color = "red";
+      const resultText = await response.text();
+
+      if (!response.ok) {
+        throw new Error("Something went wrong: " + resultText);
       }
-    } catch (err) {
-      console.error(err);
-      status.textContent = "Network error. Please try again later.";
-      status.style.color = "red";
+
+      alert("Your message has been sent. Thank you!");
+      form.reset();
+    } catch (error) {
+      console.error(error);
+      alert(error.message || "Network error. Please try again later.");
     }
+  });
+
+  // 📞 Auto-format phone as user types
+  document.getElementById("phone").addEventListener("input", function (e) {
+    let cleaned = e.target.value.replace(/\D/g, ""); // remove non-digits
+
+    if (cleaned.length > 10) {
+      cleaned = cleaned.slice(0, 10);
+    }
+
+    let formatted = cleaned;
+    if (cleaned.length > 6) {
+      formatted = `${cleaned.slice(0, 3)}-${cleaned.slice(
+        3,
+        6
+      )}-${cleaned.slice(6)}`;
+    } else if (cleaned.length > 3) {
+      formatted = `${cleaned.slice(0, 3)}-${cleaned.slice(3)}`;
+    }
+
+    e.target.value = formatted;
   });
 });
