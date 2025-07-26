@@ -29,6 +29,24 @@ export default {
 			return withCors(new Response('Invalid JSON', { status: 400 }));
 		}
 
+		// ✅ INSERT THIS BLOCK to handle Turnstile CAPTCHA
+		const token = data['cf-turnstile-response']; // sent from the form input
+		if (!token) {
+			return withCors(new Response('Missing CAPTCHA token', { status: 400 }));
+		}
+
+		const captchaRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: `secret=${env.TURNSTILE_SECRET}&response=${token}&remoteip=${request.headers.get('CF-Connecting-IP')}`,
+		});
+
+		const captchaData = await captchaRes.json();
+		if (!captchaData.success) {
+			return withCors(new Response('Failed CAPTCHA verification', { status: 403 }));
+		}
+		// ✅ END CAPTCHA block
+
 		const { firstName, lastName, email, phone, issue } = data;
 		if (!firstName || !lastName || !email || !phone || !issue) {
 			return withCors(new Response('Missing required fields', { status: 400 }));
