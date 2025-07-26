@@ -46,8 +46,10 @@ document.addEventListener("DOMContentLoaded", () => {
         throw new Error("Something went wrong: " + resultText);
       }
 
-      alert("Your message has been sent. Thank you!");
-      form.reset();
+      form.style.display = "none";
+      document.getElementById("form-message").textContent =
+        "✅ Your message was successfully sent. We’ll be reaching out shortly!";
+      document.getElementById("form-message").style.display = "block";
     } catch (error) {
       console.error(error);
       alert(error.message || "Network error. Please try again later.");
