@@ -81,25 +81,37 @@
         </p>
       </section>
       <section class="card">
-        <form id="contact-form" class="card" method="POST">
+        <form id="contact-form">
           <h2>Contact Us</h2>
 
-          <label for="firstName">First Name *</label>
-          <input type="text" id="firstName" name="firstName" required />
+          <div class="form-row">
+            <div class="form-group half">
+              <label for="firstName">First Name *</label>
+              <input type="text" id="firstName" required />
+            </div>
+            <div class="form-group half">
+              <label for="lastName">Last Name *</label>
+              <input type="text" id="lastName" required />
+            </div>
+          </div>
 
-          <label for="lastName">Last Name *</label>
-          <input type="text" id="lastName" name="lastName" required />
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="text" id="phone" required />
+          </div>
 
-          <label for="phone">Phone Number *</label>
-          <input type="tel" id="phone" name="phone" required />
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" required />
+          </div>
 
-          <label for="email">Email Address *</label>
-          <input type="email" id="email" name="email" required />
+          <div class="form-group">
+            <label for="issue">Describe Your Issue *</label>
+            <textarea id="issue" rows="6" required></textarea>
+          </div>
 
-          <label for="issue">Describe Your Issue *</label>
-          <textarea id="issue" name="issue" rows="5" required></textarea>
-
-          <button type="submit" class="btn">Submit</button>
+          <button type="submit">Submit</button>
+          <p id="form-message"></p>
         </form>
       </section>
     </main>
