@@ -1,65 +1,115 @@
-/**
- * Welcome to Cloudflare Workers! This is your first worker.
- *
- * - Run `npm run dev` in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run `npm run deploy` to publish your worker
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
-
 export default {
 	async fetch(request, env, ctx) {
+		const allowedOrigin = 'https://www.travelingtechpro.com';
+		const origin = request.headers.get('Origin');
+
+		const withCors = (response) => {
+			response.headers.set('Access-Control-Allow-Origin', allowedOrigin);
+			response.headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
+			response.headers.set('Access-Control-Allow-Headers', 'Content-Type');
+			return response;
+		};
+
+		if (request.method === 'OPTIONS') {
+			return withCors(new Response(null, { status: 204 }));
+		}
+
+		if (origin !== allowedOrigin) {
+			return withCors(new Response('Forbidden', { status: 403 }));
+		}
+
 		if (request.method !== 'POST') {
-			return new Response('Method Not Allowed', { status: 405 });
+			return withCors(new Response('Method Not Allowed', { status: 405 }));
 		}
 
 		let data;
 		try {
 			data = await request.json();
-		} catch (e) {
-			return new Response('Invalid JSON', { status: 400 });
+		} catch (err) {
+			return withCors(new Response('Invalid JSON', { status: 400 }));
 		}
 
 		const { firstName, lastName, email, phone, issue } = data;
-
 		if (!firstName || !lastName || !email || !phone || !issue) {
-			return new Response('Missing required fields', { status: 400 });
+			return withCors(new Response('Missing required fields', { status: 400 }));
 		}
 
-		const ticket = {
-			title: `Contact: ${firstName} ${lastName}`,
-			group: 'Users',
-			customer: email,
-			article: {
-				subject: 'Contact Form Submission',
-				body: `
-Name: ${firstName} ${lastName}
-Email: ${email}
-Phone: ${phone}
+		let userId;
 
-Issue:
-${issue}
-        `.trim(),
-				type: 'email',
-				content_type: 'text/plain',
-			},
-		};
-
-		const zammadRes = await fetch(`${env.ZAMMAD_URL}/api/v1/tickets`, {
+		// Try to create user first
+		const userRes = await fetch(`${env.ZAMMAD_URL}/api/v1/users`, {
 			method: 'POST',
 			headers: {
 				Authorization: `Token token=${env.ZAMMAD_TOKEN}`,
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify(ticket),
+			body: JSON.stringify({
+				firstname: firstName,
+				lastname: lastName,
+				email,
+				phone,
+				role_ids: [3], // customer role
+			}),
 		});
 
-		if (!zammadRes.ok) {
-			const errorText = await zammadRes.text();
-			return new Response('Zammad error: ' + errorText, { status: 500 });
+		if (userRes.ok) {
+			const userData = await userRes.json();
+			userId = userData.id;
+		} else if (userRes.status === 422) {
+			// User probably exists, so search by email instead
+			const lookup = await fetch(`${env.ZAMMAD_URL}/api/v1/users/search`, {
+				method: 'POST',
+				headers: {
+					Authorization: `Token token=${env.ZAMMAD_TOKEN}`,
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ query: email }),
+			});
+
+			if (!lookup.ok) {
+				const errText = await lookup.text();
+				return withCors(new Response('User lookup failed: ' + errText, { status: 500 }));
+			}
+
+			const users = await lookup.json();
+			const existingUser = users.find((u) => u.email === email);
+
+			if (!existingUser) {
+				return withCors(new Response('User not found after search.', { status: 404 }));
+			}
+
+			userId = existingUser.id;
+		} else {
+			const userErr = await userRes.text();
+			return withCors(new Response('User creation error: ' + userErr, { status: 500 }));
 		}
 
-		return new Response('Ticket created successfully.', { status: 200 });
+		// Create ticket
+		const ticketRes = await fetch(`${env.ZAMMAD_URL}/api/v1/tickets`, {
+			method: 'POST',
+			headers: {
+				Authorization: `Token token=${env.ZAMMAD_TOKEN}`,
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				title: `New Contact Form Submission from ${firstName} ${lastName}`,
+				group: 'Users', // adjust this to your Zammad group name
+				customer_id: userId,
+				article: {
+					subject: `Support Request from ${firstName} ${lastName}`,
+					body: `Phone: ${phone}\n\nIssue:\n${issue}`,
+					type: 'email',
+					internal: false,
+					to: email,
+				},
+			}),
+		});
+
+		if (!ticketRes.ok) {
+			const ticketErr = await ticketRes.text();
+			return withCors(new Response('Ticket creation error: ' + ticketErr, { status: 500 }));
+		}
+
+		return withCors(new Response('Success! Ticket created.', { status: 200 }));
 	},
 };
