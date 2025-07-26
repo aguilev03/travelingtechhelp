@@ -5,7 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact us | Traveling Tech Help</title>
     <link rel="stylesheet" href="../static/css/style.css" />
-    <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="..static/images/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="..static/images/favicon.svg" />
+    <link rel="shortcut icon" href="..static/images/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="..static/images/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="TravelingTechPro" />
+    <link rel="manifest" href="..static/images/site.webmanifest" />
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -34,7 +48,7 @@
     <header class="site-header">
       <div class="container brand-row">
         <div class="brand">
-          <img src="../static/images/logo.png" alt="Logo" />
+          <img src="../static/images/logo_notext_default.png" alt="Logo" />
           <div class="brand-text">
             <h1>Traveling Tech Pro</h1>
             <p>Local. Mobile. Reliable.</p>
@@ -104,22 +118,26 @@
     </footer>
 
     <!-- Zammad Form Script -->
-    <script id="zammad_form_script" src="https://crm.eaguil.com/assets/form/form.js"></script>
+    <script
+      id="zammad_form_script"
+      src="https://crm.eaguil.com/assets/form/form.js"
+    ></script>
 
     <script>
       $(function () {
-        $('#zammad-feedback-form').ZammadForm({
-          messageTitle: 'Contact Us',
-          messageSubmit: 'Submit',
-          messageThankYou: "Thank you for your inquiry (#%s)! We'll contact you as soon as possible.",
-          showTitle: true
+        $("#zammad-feedback-form").ZammadForm({
+          messageTitle: "Contact Us",
+          messageSubmit: "Submit",
+          messageThankYou:
+            "Thank you for your inquiry (#%s)! We'll contact you as soon as possible.",
+          showTitle: true,
         });
 
         // Wait until the form is rendered
         const observer = new MutationObserver(() => {
-          const $form = $('#zammad-feedback-form form');
+          const $form = $("#zammad-feedback-form form");
 
-          if ($form.length && !$form.find('#not-a-robot').length) {
+          if ($form.length && !$form.find("#not-a-robot").length) {
             // Add checkbox next to the submit button
             const $submitBtn = $form.find('button[type="submit"]');
 
@@ -134,12 +152,12 @@
             $submitBtn.before(checkboxHTML);
 
             // Enforce checkbox on submit
-            $form.on('submit', function (e) {
-              if (!$('#not-a-robot').is(':checked')) {
+            $form.on("submit", function (e) {
+              if (!$("#not-a-robot").is(":checked")) {
                 e.preventDefault();
-                $('#human-error').show();
+                $("#human-error").show();
               } else {
-                $('#human-error').hide();
+                $("#human-error").hide();
               }
             });
 
@@ -147,9 +165,9 @@
           }
         });
 
-        observer.observe(document.getElementById('zammad-feedback-form'), {
+        observer.observe(document.getElementById("zammad-feedback-form"), {
           childList: true,
-          subtree: true
+          subtree: true,
         });
       });
     </script>
