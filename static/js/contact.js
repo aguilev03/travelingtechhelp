@@ -17,12 +17,17 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    const token = document.querySelector(
+      '[name="cf-turnstile-response"]'
+    ).value;
+
     const payload = {
       firstName,
       lastName,
       email,
-      phone, // keep original (formatted) for readability in ticket
+      phone,
       issue,
+      "cf-turnstile-response": token, // required
     };
 
     try {
