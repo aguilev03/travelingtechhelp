@@ -79,6 +79,10 @@ body {
   text-decoration: none;
 }
 
+.nav-links a:hover {
+  color: #03335c;
+}
+
 /* Hamburger styles (hidden on desktop) */
 .hamburger {
   display: none;
