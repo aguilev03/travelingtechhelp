@@ -116,9 +116,8 @@ export default {
 				article: {
 					subject: `Support Request from ${firstName} ${lastName}`,
 					body: `Phone: ${phone}\n\nIssue:\n${issue}`,
-					type: 'email',
-					internal: false,
-					to: email,
+					type: 'note', // ⬅️ makes this internal
+					internal: true,
 				},
 			}),
 		});
