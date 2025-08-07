@@ -1,0 +1,11 @@
+baseURL = "/articles/"
+
+title = "Traveling Tech Pro – Articles"
+
+languageCode = "en-us"
+
+[permalinks]
+
+  posts = "/articles/:slug/"
+
+
