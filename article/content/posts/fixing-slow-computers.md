@@ -1,8 +1,9 @@
 +++
 date = '2025-08-07T15:06:49-05:00'
-draft = true
+draft = false
 title = 'Quick Tips: Bring new life back to your PC'
 +++
+
 ## Quick Tips: Bring New Life Back to Your PC
 
 Is your computer slower than it used to be? Before you toss it out or buy something new, try these DIY tips to give it a fresh start, with little to no tools or tech skills required!
