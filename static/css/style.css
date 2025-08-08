@@ -807,18 +807,23 @@ button[type="submit"]:hover {
 .post-title {
   font-weight: 800;
   letter-spacing: -0.5px;
+  font-size: clamp(2.5rem, 4vw, 3.5rem); /* much larger than before */
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
 }
 
+
 .post-subtitle {
-  font-size: 1.1rem;
-  color: #333;
-  margin: 0 0 0.5rem 0; /* a little space under subtitle */
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem); /* slightly larger than default */
+  font-weight: 400;
+  color: #555; /* softer, secondary tone */
+  margin-bottom: 1rem;
 }
 
 .post-meta {
-  color: #666;
   font-size: 0.95rem;
-  margin: 0.25rem 0 0; /* tight to subtitle */
+  color: #777;
+  margin-bottom: 1.5rem; /* more space before image */
 }
 
 .post-divider {
