@@ -1,25 +1,15 @@
 {{ define "main" }}
-
 <main class="container">
   <div class="card-row">
-    <section class="card">
-      {{/* ---- HERO / FEATURE IMAGE ---- */}} {{ $feat := or
-      .Params.featureImage .Params.feature_image | default (index .Params.images
-      0) }} {{ if $feat }}
-      <figure class="post-hero">
-        <img
-          src="{{ $feat | relURL }}"
-          alt="{{ .Params.featureAlt | default .Title }}"
-        />
-      </figure>
-      {{ end }}
-
+    <section class="card post-narrow">
       <article class="post-wrap">
         <header class="post-header">
           <h1 class="post-title">{{ .Title }}</h1>
+
           {{ with .Params.subtitle }}
           <p class="post-subtitle">{{ . }}</p>
           {{ end }}
+
           <p class="post-meta">
             <em>
               Posted on {{ .Date.Format "January 2, 2006" }} {{ with
@@ -28,14 +18,24 @@
           </p>
         </header>
 
-        <hr />
+        <hr class="post-divider" />
+
+        {{/* ---- FEATURE IMAGE after header ---- */}} {{ $feat := or
+        .Params.featureImage .Params.feature_image | default (index
+        .Params.images 0) }} {{ if $feat }}
+        <figure class="post-hero">
+          <img
+            src="{{ $feat | relURL }}"
+            alt="{{ .Params.featureAlt | default .Title }}"
+          />
+        </figure>
+        {{ end }}
 
         <div class="post-content">{{ .Content }}</div>
       </article>
 
-      <p><a href="/articles/">← Back to Articles</a></p>
+      <p class="post-back"><a href="/articles/">← Back to Articles</a></p>
     </section>
   </div>
 </main>
-
 {{ end }}

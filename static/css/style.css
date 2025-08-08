@@ -750,3 +750,63 @@ button[type="submit"]:hover {
 .card hr {
   margin: 1rem 0;
 }
+
+/* Make article layout skinnier */
+.card.post-narrow {
+  max-width: 760px; /* tighten overall width */
+  margin: 0 auto; /* center it */
+  padding: 1.25rem 1.25rem 2rem;
+}
+
+/* Typography & spacing */
+.post-title {
+  font-size: clamp(2rem, 3.2vw, 2.6rem);
+  line-height: 1.2;
+  margin: 0 0 0.25rem 0;
+}
+
+.post-subtitle {
+  font-size: 1.1rem;
+  color: #333;
+  margin: 0 0 0.5rem 0; /* a little space under subtitle */
+}
+
+.post-meta {
+  color: #666;
+  font-size: 0.95rem;
+  margin: 0.25rem 0 0; /* tight to subtitle */
+}
+
+.post-divider {
+  margin: 1rem 0 1.25rem;
+}
+
+/* Feature image */
+.post-hero {
+  margin: 0 0 1.25rem 0;
+}
+.post-hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+/* Body copy */
+.post-content {
+  line-height: 1.7;
+  font-size: 1.02rem;
+}
+
+/* Back link */
+.post-back {
+  margin-top: 1.5rem;
+}
+.post-back a {
+  color: #004aad;
+  text-decoration: none;
+  font-weight: 600;
+}
+.post-back a:hover {
+  text-decoration: underline;
+}
