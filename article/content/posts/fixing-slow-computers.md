@@ -36,8 +36,10 @@ If Task Manager shows memory near **80–90%** while you’re doing normal work 
 ---
 
 > **PC Tune-Up — $69.99**  
+
 > Don’t want to DIY? We’ll handle cleanup, software removal, optimization, startup management, and a performance check. Optional light dust cleaning for desktops.  
+
 > **Serving San Antonio & surrounding areas.**  
 > **Call/Text:** (210) 642-9313 • **Website:** www.TravelingTechPro.com
 
-Need help picking RAM or checking compatibility? Drop a comment or message us—we’ll point you in the right direction.
+### Need help picking RAM or checking compatibility? Drop a comment or message us—we’ll point you in the right direction.
