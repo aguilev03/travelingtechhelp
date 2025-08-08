@@ -690,13 +690,13 @@ button[type="submit"]:hover {
   border: 1px solid #f5c6cb;
 }
 
-.services-row {
+.services {
   display: flex;
   align-items: flex-start; /* aligns both columns to the top */
   gap: 2rem; /* spacing between left and right columns */
 }
 
-.services-row > div {
+.services > div {
   margin-top: 0; /* remove any extra margin from top */
 }
 
