@@ -3,10 +3,30 @@
 <main class="container">
   <div class="card-row">
     <section class="card">
-      <article>
-        <h1>{{ .Title }}</h1>
+      {{/* ---- HERO / FEATURE IMAGE ---- */}} {{ $feat := or
+      .Params.featureImage .Params.feature_image | default (index .Params.images
+      0) }} {{ if $feat }}
+      <figure class="post-hero">
+        <img
+          src="{{ $feat | relURL }}"
+          alt="{{ .Params.featureAlt | default .Title }}"
+        />
+      </figure>
+      {{ end }}
 
-        <p><em>Posted on {{ .Date.Format "January 2, 2006" }}</em></p>
+      <article class="post-wrap">
+        <header class="post-header">
+          <h1 class="post-title">{{ .Title }}</h1>
+          {{ with .Params.subtitle }}
+          <p class="post-subtitle">{{ . }}</p>
+          {{ end }}
+          <p class="post-meta">
+            <em>
+              Posted on {{ .Date.Format "January 2, 2006" }} {{ with
+              .ReadingTime }} • ~{{ . }} min read{{ end }}
+            </em>
+          </p>
+        </header>
 
         <hr />
 

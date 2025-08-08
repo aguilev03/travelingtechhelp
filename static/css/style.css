@@ -717,3 +717,27 @@ button[type="submit"]:hover {
 .read-more:hover {
   text-decoration: underline;
 }
+.post-hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+.post-wrap {
+  padding: 0.5rem 0;
+}
+.post-title {
+  margin: 0.5rem 0 0.25rem;
+}
+.post-subtitle {
+  color: #666;
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+}
+.post-meta {
+  color: #888;
+  margin: 0.25rem 0 1rem;
+}
+.card hr {
+  margin: 1rem 0;
+}
