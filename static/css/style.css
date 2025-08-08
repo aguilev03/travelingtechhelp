@@ -726,6 +726,27 @@ button[type="submit"]:hover {
 .read-more:hover {
   text-decoration: underline;
 }
+
+.article-card {
+  max-width: 25%; /* takes up a quarter of the container */
+  flex: 1 1 25%;
+  margin: 1rem;
+}
+
+.article-card img {
+  max-height: 150px; /* shrink image height */
+  object-fit: cover;
+}
+
+.article-card h2 {
+  font-size: 1rem; /* smaller title */
+}
+
+.article-summary {
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
 .post-hero img {
   width: 100%;
   height: auto;
