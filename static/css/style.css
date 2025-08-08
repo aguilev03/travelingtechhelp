@@ -746,6 +746,11 @@ button[type="submit"]:hover {
   font-size: 0.85rem;
   line-height: 1.4;
 }
+.article-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
 
 .post-hero img {
   width: 100%;
