@@ -164,14 +164,23 @@ body {
   padding-left: 0;
 }
 
-.card li {
-  margin-bottom: 0.5rem;
+/* Remove check mark from all card lists */
+.card li::before {
+  content: none;
 }
 
-.card li::before {
-  content: "✔ ";
-  color: #007bff;
-  margin-right: 0.25rem;
+/* ✅ Add blue check marks only for .bluechk lists */
+.bluechk li {
+  list-style: none; /* hide default bullets */
+  position: relative;
+  padding-left: 1.2rem; /* space for check mark */
+}
+
+.bluechk li::before {
+  content: "✔";
+  color: #007bff; /* your blue */
+  position: absolute;
+  left: 0;
 }
 
 /* === Sections === */
