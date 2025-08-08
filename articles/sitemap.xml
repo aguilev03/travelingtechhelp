@@ -2,17 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.travelingtechpro.com/posts/</loc>
+    <loc>https://www.travelingtechpro.com/articles/posts/</loc>
     <lastmod>2025-08-07T15:06:49-05:00</lastmod>
   </url><url>
-    <loc>https://www.travelingtechpro.com/posts/fixing-slow-computers/</loc>
+    <loc>https://www.travelingtechpro.com/articles/posts/fixing-slow-computers/</loc>
     <lastmod>2025-08-07T15:06:49-05:00</lastmod>
   </url><url>
-    <loc>https://www.travelingtechpro.com/</loc>
+    <loc>https://www.travelingtechpro.com/articles/</loc>
     <lastmod>2025-08-07T15:06:49-05:00</lastmod>
   </url><url>
-    <loc>https://www.travelingtechpro.com/categories/</loc>
+    <loc>https://www.travelingtechpro.com/articles/categories/</loc>
   </url><url>
-    <loc>https://www.travelingtechpro.com/tags/</loc>
+    <loc>https://www.travelingtechpro.com/articles/tags/</loc>
   </url>
 </urlset>

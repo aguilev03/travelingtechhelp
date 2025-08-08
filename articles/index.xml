@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Traveling Tech Pro</title>
-    <link>https://www.travelingtechpro.com/</link>
+    <link>https://www.travelingtechpro.com/articles/</link>
     <description>Recent content on Traveling Tech Pro</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 07 Aug 2025 15:06:49 -0500</lastBuildDate>
-    <atom:link href="https://www.travelingtechpro.com/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.travelingtechpro.com/articles/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Quick Tips: Bring new life back to your PC</title>
-      <link>https://www.travelingtechpro.com/posts/fixing-slow-computers/</link>
+      <link>https://www.travelingtechpro.com/articles/posts/fixing-slow-computers/</link>
       <pubDate>Thu, 07 Aug 2025 15:06:49 -0500</pubDate>
-      <guid>https://www.travelingtechpro.com/posts/fixing-slow-computers/</guid>
+      <guid>https://www.travelingtechpro.com/articles/posts/fixing-slow-computers/</guid>
       <description>&lt;h2 id=&#34;quick-tips-bring-new-life-back-to-your-pc&#34;&gt;Quick Tips: Bring New Life Back to Your PC&lt;/h2&gt;&#xA;&lt;p&gt;Is your computer slower than it used to be? Before you toss it out or buy something new, try these DIY tips to give it a fresh start, with little to no tools or tech skills required!&lt;/p&gt;</description>
     </item>
   </channel>
