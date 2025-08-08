@@ -690,14 +690,22 @@ button[type="submit"]:hover {
   border: 1px solid #f5c6cb;
 }
 
-.services {
+.columns-2 {
   display: flex;
-  align-items: flex-start; /* aligns both columns to the top */
-  gap: 2rem; /* spacing between left and right columns */
+  align-items: flex-start; /* align both columns at the top */
+  gap: 2rem; /* keep some horizontal space between columns */
 }
 
-.services > div {
-  margin-top: 0; /* remove any extra margin from top */
+.columns-2 .card {
+  margin-top: 0; /* remove any auto top margins from cards */
+}
+
+.columns-2 .card h3 {
+  margin-bottom: 0.5rem; /* tighten space below heading */
+}
+
+.columns-2 .card ul {
+  margin-top: 0; /* remove extra space before list */
 }
 
 /* Article CSS */
