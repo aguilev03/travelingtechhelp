@@ -680,3 +680,40 @@ button[type="submit"]:hover {
   background-color: #f8d7da;
   border: 1px solid #f5c6cb;
 }
+
+/* Article CSS */
+.article-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.article-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  padding: 1rem;
+}
+
+.article-card img.article-thumb {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.article-summary {
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.read-more {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-weight: bold;
+  color: #004aad;
+  text-decoration: none;
+}
+.read-more:hover {
+  text-decoration: underline;
+}

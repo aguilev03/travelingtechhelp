@@ -1,13 +1,25 @@
 {{ define "main" }}
 <main class="container">
-  <h2>Latest Articles</h2>
-  <ul>
-    {{ range .Pages.ByDate.Reverse }}
-    <li>
-      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-      <small>— {{ .Date.Format "Jan 2, 2006" }}</small>
-    </li>
+  <h1>Latest Articles</h1>
+  <div class="article-list">
+    {{ range where .Site.RegularPages "Section" "posts" }}
+    <article class="article-card">
+      {{ with .Params.featureImage }}
+      <a href="{{ $.RelPermalink }}">
+        <img src="{{ . }}" alt="{{ $.Title }}" class="article-thumb" />
+      </a>
+      {{ end }}
+
+      <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      <p class="article-date">{{ .Date.Format "Jan 2, 2006" }}</p>
+
+      <p class="article-summary">
+        {{ with .Params.summary }} {{ . }} {{ else }} {{ .Summary }} {{ end }}
+      </p>
+
+      <a href="{{ .RelPermalink }}" class="read-more">Read More →</a>
+    </article>
     {{ end }}
-  </ul>
+  </div>
 </main>
 {{ end }}

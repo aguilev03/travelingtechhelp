@@ -2,6 +2,8 @@
 date = '2025-08-07T15:06:49-05:00'
 draft = false
 title = 'Quick Tips: Bring new life back to your PC'
+featureImage = "/static/images/articles/smokypc.png"
+summary = "If your computer has been feeling sluggish lately, you might not need to replace it just yet. Simple steps like restarting your PC, clearing browser cache and cookies, uninstalling unused programs, and disabling unnecessary startup apps can often restore speed and responsiveness. "
 +++
 
 ## Quick Tips: Bring New Life Back to Your PC
