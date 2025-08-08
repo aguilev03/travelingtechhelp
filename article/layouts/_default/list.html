@@ -1,37 +1,13 @@
 {{ define "main" }}
-
 <main class="container">
-
-	  <div class="card-row">
-
-		      <section class="card">
-
-			            <h1>Latest Articles</h1>
-
-				          <ul>
-
-						          {{ range .Pages.ByDate.Reverse }}
-
-							            <li>
-
-									                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-
-											            <small> — {{ .Date.Format "Jan 2, 2006" }}</small>
-
-												                {{ with .Summary }}<div>{{ . }}</div>{{ end }}
-
-														          </li>
-
-															          {{ end }}
-
-																        </ul>
-
-																	    </section>
-
-																	      </div>
-
+  <h2>Latest Articles</h2>
+  <ul>
+    {{ range .Pages.ByDate.Reverse }}
+    <li>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      <small>— {{ .Date.Format "Jan 2, 2006" }}</small>
+    </li>
+    {{ end }}
+  </ul>
 </main>
-
 {{ end }}
-
-
